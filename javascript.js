@@ -81,7 +81,6 @@ function playGame() {
         else if (roundResult == 1) {
             humanScore += 1;
         }
-        
         rounds -= 1;
     }
 
