@@ -66,14 +66,93 @@ function playGame() {
     let compScore = 0;
     let humanScore = 0;
     let rounds = 5;
-    let roundResult = null;
+    let roundResult;
     let humanChoice;
     let compChoice;
+    let rockBtn = document.querySelector(".rock");
+    let paperBtn = document.querySelector(".paper");
+    let scissorsBtn = document.querySelector(".scissors");
+    let h2 = document.querySelector("h2");
 
-    while (rounds > 0) {
-        humanChoice = getHumanChoice();
+    rockBtn.addEventListener('click', function(e) {
         compChoice = getComputerChoice();
-        roundResult = playRound(humanChoice, compChoice);
+        roundResult = playRound("Rock", compChoice);
+        if (roundResult == 0) {
+            compScore += 1;
+        }
+        else if (roundResult == 1) {
+            humanScore += 1;
+        }
+
+        h2.textContent = "You: " + humanScore + " | Computer: " + compScore;
+
+        if (humanScore == 5 || compScore == 5) {
+            if (humanScore > compScore) {
+                /*
+                console.log("Congratulations! You won the game!");
+                console.log("You won with a score of " + humanScore);
+                */
+               h2.textContent = "Congratulations! You won the game!" + " You won with a score of " + humanScore;
+            }
+            else if (compScore > humanScore) {
+                /*
+                console.log("Sorry, you lost. Better luck next time.");
+                console.log("You lost with a score of " + humanScore);
+                */
+               h2.textContent = "Sorry, you lost. Better luck next time." + " You lost with a score of " + humanScore;
+            }
+        }
+    });
+
+    paperBtn.addEventListener('click', function(e) {
+        compChoice = getComputerChoice();
+        roundResult = playRound("Paper", compChoice);
+        if (roundResult == 0) {
+            compScore += 1;
+        }
+        else if (roundResult == 1) {
+            humanScore += 1;
+        }
+
+        h2.textContent = "You: " + humanScore + " | Computer: " + compScore;
+
+        if (humanScore == 5 || compScore == 5) {
+            if (humanScore > compScore) {
+               h2.textContent = "Congratulations! You won the game!" + " You won with a score of " + humanScore;
+            }
+            else if (compScore > humanScore) {
+               h2.textContent = "Sorry, you lost. Better luck next time." + " You lost with a score of " + humanScore;
+            }
+        }
+    });
+
+    scissorsBtn.addEventListener('click', function(e) {
+        compChoice = getComputerChoice();
+        roundResult = playRound("Scissors", compChoice);
+        if (roundResult == 0) {
+            compScore += 1;
+        }
+        else if (roundResult == 1) {
+            humanScore += 1;
+        }
+
+        h2.textContent = "You: " + humanScore + " | Computer: " + compScore;
+
+        if (humanScore == 5 || compScore == 5) {
+            if (humanScore > compScore) {
+               h2.textContent = "Congratulations! You won the game!" + " You won with a score of " + humanScore;
+            }
+            else if (compScore > humanScore) {
+               h2.textContent = "Sorry, you lost. Better luck next time." + " You lost with a score of " + humanScore;
+            }
+        }
+    });
+
+    /*
+    while (rounds > 0) {
+        compChoice = getComputerChoice();
+        //roundResult = playRound(humanChoice, compChoice);
+
 
         if (roundResult == 0) {
             compScore += 1;
@@ -83,6 +162,12 @@ function playGame() {
         }
         rounds -= 1;
     }
+        */
+
+    rockBtn.removeEventListener('click', function(e) {});
+    paperBtn.removeEventListener('click', function(e) {});
+    scissorsBtn.removeEventListener('click', function(e) {});
+
 
     if (humanScore > compScore) {
         console.log("Congratulations! You won the game!");
